@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", Arial, sans-serif;
+  --font-display: "Space Grotesk", Arial, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+
+  --color-void: #0d0c10;
+  --color-panel: #15131a;
+  --color-panel2: #1c1922;
+  --color-ink: #e8e5ed;
+  --color-muted: #9e98ab;
+  --color-soft: #8f899e;
+  --color-viol: #cb93ff;
+  --color-pulse: #80e0df;
+  --color-line: rgba(232, 229, 237, 0.14);
+}
+
+:root {
+  color-scheme: dark;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-void);
+}
+
+#main:focus {
+  outline: none;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-void);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--color-viol);
+  color: #1a1121;
+}
+
+:where(a, button, summary, input, select, textarea, [role="button"]):focus-visible {
+  outline: 2px solid var(--color-viol);
+  outline-offset: 2px;
+}
+
+/* ——— Vector brand primitives ——— */
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--color-viol);
+}
+
+.display {
+  text-transform: uppercase;
+  letter-spacing: -0.065em;
+  font-weight: 500;
+  line-height: 0.9;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(232, 229, 237, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 229, 237, 0.045) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image:
+    linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent),
+    linear-gradient(0deg, transparent, #000 18%, #000 75%, transparent);
+}
+
+.btn-primary {
+  min-height: 48px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10px;
+  background: var(--color-viol);
+  color: #1a1121;
+  font-weight: 500;
+  transition: transform 0.2s var(--ease-out), background 0.2s var(--ease-out);
+}
+.btn-primary:hover {
+  background: #dac0ff;
+  transform: translateY(-3px);
+}
+.btn-primary:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.btn-ghost {
+  min-height: 48px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10px;
+  border: 1px solid var(--color-line);
+  color: var(--color-ink);
+  transition: transform 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+.btn-ghost:hover {
+  transform: translateY(-3px);
+  border-color: rgba(203, 147, 255, 0.55);
+}
+.btn-ghost:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.giant-outline {
+  font-family: var(--font-mono);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(203, 147, 255, 0.16);
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.field {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  color: var(--color-ink);
+  border-radius: 2px;
+  padding: 12px 14px;
+  font-size: 14px;
+  width: 100%;
+}
+.field::placeholder {
+  color: var(--color-soft);
+}
+.field:focus {
+  outline: none;
+  border-color: rgba(203, 147, 255, 0.6);
+}
+
+.reveal {
+  animation: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.reveal-1 {
+  animation-delay: 120ms;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero signal art: concentric range rings + slow radar sweep.
+   Transform/opacity only; disabled under prefers-reduced-motion below. */
+.signal-rings {
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  width: min(72vw, 760px);
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.signal-rings i {
+  position: absolute;
+  border: 1px solid rgba(203, 147, 255, 0.16);
+  border-radius: 9999px;
+}
+.signal-rings i:nth-child(1) {
+  inset: 0;
+}
+.signal-rings i:nth-child(2) {
+  inset: 13%;
+  border-color: rgba(203, 147, 255, 0.11);
+}
+.signal-rings i:nth-child(3) {
+  inset: 26%;
+  border-color: rgba(128, 224, 223, 0.12);
+}
+.signal-rings i:nth-child(4) {
+  inset: 39%;
+  border-color: rgba(203, 147, 255, 0.2);
+}
+.signal-sweep {
+  position: absolute;
+  inset: 26%;
+  border-radius: 9999px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(128, 224, 223, 0.1) 40deg,
+    transparent 80deg
+  );
+  animation: sweep 9s linear infinite;
+}
+@keyframes sweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
