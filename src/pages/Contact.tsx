@@ -22,21 +22,6 @@ export default function Contact() {
           <div className="bg-panel p-8 md:p-12">
             <p className="eyebrow">Coordinates</p>
             <h2 className="display mt-4 text-[clamp(28px,3.4vw,44px)]">FIND US_</h2>
-            <figure className="mt-6 border border-line bg-void">
-              <img
-                src="/work-env.jpeg"
-                alt="The Cybernexus workbench: server racks, oscilloscopes, and CRT monitors, with a taped VIVA LA V3CT0R label on the rack"
-                width={1600}
-                height={893}
-                loading="lazy"
-                decoding="async"
-                className="block aspect-[16/9] w-full object-cover saturate-[.85] transition-[filter] duration-300 hover:saturate-100"
-              />
-              <figcaption className="flex items-center justify-between gap-3 border-t border-line px-4 py-2.5 font-mono text-[10px] tracking-[0.1em] text-soft uppercase">
-                <span>Fig. 01 — the workbench</span>
-                <span className="text-viol">viva la v3ct0r</span>
-              </figcaption>
-            </figure>
             <ul className="mt-6 list-none p-0">
               <li className="border-t border-line py-4">
                 <p className="font-mono text-[10px] tracking-[0.12em] text-pulse uppercase">Base</p>
