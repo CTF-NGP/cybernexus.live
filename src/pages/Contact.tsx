@@ -1,6 +1,38 @@
 import { useState } from "react";
-import { ArrowUpRight } from "@phosphor-icons/react";
+import { ArrowUpRight, ImageBroken } from "@phosphor-icons/react";
 import { PageHeader, Section } from "../components/ui";
+
+function BasePhoto() {
+  const [missing, setMissing] = useState(false);
+
+  if (missing) {
+    return (
+      <div className="grid aspect-[16/9] w-full content-center justify-items-center gap-3 border border-dashed border-viol/40 bg-void px-6 text-center">
+        <ImageBroken size={28} className="text-viol" aria-hidden="true" />
+        <p className="font-mono text-[11px] tracking-[0.13em] text-viol uppercase">
+          Image not found
+        </p>
+        <p className="max-w-[36ch] text-[12px] leading-relaxed text-muted">
+          Base photo incoming — drop <span className="font-mono text-soft">base.jpeg</span> into{" "}
+          <span className="font-mono text-soft">public/</span> and it appears here.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src="/base.jpeg"
+      alt="Cybernexus base of operations"
+      width={1600}
+      height={900}
+      loading="lazy"
+      decoding="async"
+      onError={() => setMissing(true)}
+      className="block aspect-[16/9] w-full border border-line object-cover"
+    />
+  );
+}
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
@@ -22,6 +54,9 @@ export default function Contact() {
           <div className="bg-panel p-8 md:p-12">
             <p className="eyebrow">Coordinates</p>
             <h2 className="display mt-4 text-[clamp(28px,3.4vw,44px)]">FIND US_</h2>
+            <div className="mt-6">
+              <BasePhoto />
+            </div>
             <ul className="mt-6 list-none p-0">
               <li className="border-t border-line py-4">
                 <p className="font-mono text-[10px] tracking-[0.12em] text-pulse uppercase">Base</p>
